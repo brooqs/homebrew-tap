@@ -5,13 +5,15 @@
 class Steward < Formula
   desc "AI Personal Assistant — single binary, multi-provider, voice-enabled"
   homepage "https://github.com/brooqs/steward"
-  version "1.2.6"
+  version "1.2.7"
   license "MIT"
+
+  depends_on "node"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/brooqs/steward/releases/download/v1.2.6/steward_1.2.6_darwin_amd64.tar.gz"
-      sha256 "32143c147c28d587d7bc3ddaba1b172079ad45b92a99ef4fa0987e1b230675a0"
+      url "https://github.com/brooqs/steward/releases/download/v1.2.7/steward_1.2.7_darwin_amd64.tar.gz"
+      sha256 "fc351d9d23bf889a57a1a4bd07c8515ead695ec2b3c10005b59e05eb2ef6ed73"
 
       define_method(:install) do
         bin.install "steward"
@@ -24,11 +26,18 @@ class Steward < Formula
 
         # Create data directory
         (var/"lib/steward").mkpath
+
+        # Install WhatsApp bridge
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/index.js"
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/package.json"
+        cd libexec/"bridge/whatsapp" do
+          system "npm", "install", "--production"
+        end
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/brooqs/steward/releases/download/v1.2.6/steward_1.2.6_darwin_arm64.tar.gz"
-      sha256 "16ac6ffae2e37166668208df885892e32f59973bd55dec2d9dbb42894007db88"
+      url "https://github.com/brooqs/steward/releases/download/v1.2.7/steward_1.2.7_darwin_arm64.tar.gz"
+      sha256 "bd12cc79fa54b9a22ae4fdaabd08d4b447d9d8876f670690b6aa5d706c7c5390"
 
       define_method(:install) do
         bin.install "steward"
@@ -41,14 +50,21 @@ class Steward < Formula
 
         # Create data directory
         (var/"lib/steward").mkpath
+
+        # Install WhatsApp bridge
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/index.js"
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/package.json"
+        cd libexec/"bridge/whatsapp" do
+          system "npm", "install", "--production"
+        end
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brooqs/steward/releases/download/v1.2.6/steward_1.2.6_linux_amd64.tar.gz"
-      sha256 "d0f6fea405cbbdfab09bd856cc8b28122652acca42adedc15ad41d2c8d9a8316"
+      url "https://github.com/brooqs/steward/releases/download/v1.2.7/steward_1.2.7_linux_amd64.tar.gz"
+      sha256 "3fbd32b8a521598362e6a0c1c6d352b46ead8529c49641f24a85d5163233ad48"
       define_method(:install) do
         bin.install "steward"
         bin.install "steward-satellite"
@@ -60,11 +76,18 @@ class Steward < Formula
 
         # Create data directory
         (var/"lib/steward").mkpath
+
+        # Install WhatsApp bridge
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/index.js"
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/package.json"
+        cd libexec/"bridge/whatsapp" do
+          system "npm", "install", "--production"
+        end
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brooqs/steward/releases/download/v1.2.6/steward_1.2.6_linux_arm64.tar.gz"
-      sha256 "0eb420fa7abae95f264d5eeb9ce7961deca63ecfebbddb6160cf2a641f8eac1e"
+      url "https://github.com/brooqs/steward/releases/download/v1.2.7/steward_1.2.7_linux_arm64.tar.gz"
+      sha256 "a3a309cb9557c99b53b6a66731029b56ce0d6d64d20f1507dd6fbce34278d808"
       define_method(:install) do
         bin.install "steward"
         bin.install "steward-satellite"
@@ -76,6 +99,13 @@ class Steward < Formula
 
         # Create data directory
         (var/"lib/steward").mkpath
+
+        # Install WhatsApp bridge
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/index.js"
+        (libexec/"bridge/whatsapp").install "bridge/whatsapp/package.json"
+        cd libexec/"bridge/whatsapp" do
+          system "npm", "install", "--production"
+        end
       end
     end
   end
@@ -87,6 +117,9 @@ class Steward < Formula
         2. Edit #{etc}/steward/core.yml with your provider and API key
         3. brew services start steward
         4. Open http://localhost:8080 for the admin panel
+
+      WhatsApp bridge installed at: #{libexec}/bridge/whatsapp
+        Start: node #{libexec}/bridge/whatsapp/index.js
     EOS
   end
 
