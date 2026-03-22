@@ -5,15 +5,15 @@
 class Steward < Formula
   desc "AI Personal Assistant — single binary, multi-provider, voice-enabled"
   homepage "https://github.com/brooqs/steward"
-  version "1.3.2"
+  version "1.4.0"
   license "MIT"
 
   depends_on "node"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/brooqs/steward/releases/download/v1.3.2/steward_1.3.2_darwin_amd64.tar.gz"
-      sha256 "1c973da8838422898945209c41a8ef0f2513c34318cb0669416e206d57812e41"
+      url "https://github.com/brooqs/steward/releases/download/v1.4.0/steward_1.4.0_darwin_amd64.tar.gz"
+      sha256 "ccb17bfe8a26bbdf0830959ba67a45746623a9957f67ceffbfab1719f4dae849"
 
       define_method(:install) do
         bin.install "steward"
@@ -36,8 +36,8 @@ class Steward < Formula
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/brooqs/steward/releases/download/v1.3.2/steward_1.3.2_darwin_arm64.tar.gz"
-      sha256 "b603a1ad7856d5c726fedd174b633d6658a93c501f353f42bebd535b388454f6"
+      url "https://github.com/brooqs/steward/releases/download/v1.4.0/steward_1.4.0_darwin_arm64.tar.gz"
+      sha256 "98ac508690b6d6472dbffc027cbc10c10c139b3a634c7f7ec81ec178c8013e06"
 
       define_method(:install) do
         bin.install "steward"
@@ -63,8 +63,8 @@ class Steward < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brooqs/steward/releases/download/v1.3.2/steward_1.3.2_linux_amd64.tar.gz"
-      sha256 "932c8c52d3765510396aac6cc8d732b3a416e794619381d5114a48c8ce7c01b2"
+      url "https://github.com/brooqs/steward/releases/download/v1.4.0/steward_1.4.0_linux_amd64.tar.gz"
+      sha256 "8bf57047fbdc24018e2c5086a9f74e7fb314c8d4f7e6c6269cd1f0a6411f02d7"
       define_method(:install) do
         bin.install "steward"
         bin.install "steward-satellite"
@@ -86,8 +86,8 @@ class Steward < Formula
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/brooqs/steward/releases/download/v1.3.2/steward_1.3.2_linux_arm64.tar.gz"
-      sha256 "46ba35553444d7452b68180c0efdebeba0223e47d60efcf95cd6f87a4b884c48"
+      url "https://github.com/brooqs/steward/releases/download/v1.4.0/steward_1.4.0_linux_arm64.tar.gz"
+      sha256 "9b71e7583505288d1aaa0b92ea6969aaba002e156d30fa1af02adec0c747564f"
       define_method(:install) do
         bin.install "steward"
         bin.install "steward-satellite"
